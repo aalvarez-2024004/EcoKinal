@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
  
 import publicationRoutes from '../src/publications/public.routes.js';
+import commentRoutes from '../src/comments/comments.routes.js';
  
 const BASE_PATH = '/ForoEcoKinal/v1';
  
@@ -18,6 +19,7 @@ export const createApp = () => {
  
     // Rutas
     app.use(`${BASE_PATH}/posts`, publicationRoutes);
+    app.use(`${BASE_PATH}/comments`, commentRoutes);
  
     // Ruta de prueba
     app.get(`${BASE_PATH}/health`, (req, res) => {
