@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  restaurant_db:
+  ecokinal_db:
     image: postgres:16
     container_name: AuthEcoKinal
     restart: always
