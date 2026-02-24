@@ -34,4 +34,4 @@ correctamente y este activo
 https://www.postman.com/aalvarez-2024004-2419738/workspace/ecokinal
 
     O TAMBIEN: Puede abrir postman, e importar el archivo JSON donde se encuentran todos los endpoints, el archivo JSON lo puede encontrar en la ruta:  C:GestorDeOpiniones-main\ArchivoJSONpostMan
-    Nombre del archivo: EcoKinal.postman_collection.json
+    Nombre del archivo: AuthEcoKinal.json
