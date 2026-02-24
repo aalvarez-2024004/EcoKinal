@@ -14,6 +14,7 @@ export const seedAdminGeneral = async () => {
     const hashedPassword = await hashPassword('adminKinalero2026')
 
     await User.create({
+      username: 'admin',
       name: 'Super Admin',
       email: 'adminecokinal@gmail.com',
       password: hashedPassword,
