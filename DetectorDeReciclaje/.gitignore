@@ -1,3 +1,4 @@
-google-vision-key.json
-.env
 node_modules/ 
+.env
+google-vision-key.json
+*.json
