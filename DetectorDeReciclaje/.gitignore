@@ -1,4 +1,5 @@
 node_modules/ 
 .env
-google-vision-key.json
 *.json
+/secrets/
+/secrets/*
