@@ -1,14 +1,14 @@
 {
   "info": {
-    "_postman_id": "3e662ad0-039d-4542-b73c-13db6b82a966",
+    "_postman_id": "87780b76-e35e-4ade-8294-80a7cb3ae237",
     "name": "EcoKinal",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "48332481",
-    "_collection_link": "https://go.postman.co/collection/48332481-3e662ad0-039d-4542-b73c-13db6b82a966?source=collection_link"
+    "_exporter_id": "48332460",
+    "_collection_link": "https://go.postman.co/collection/48332460-87780b76-e35e-4ade-8294-80a7cb3ae237?source=collection_link"
   },
   "item": [
     {
-      "name": "AuthEcoKinal",
+      "name": "AuthServiceEcoKinal",
       "item": [
         {
           "name": "RegisterEcoKinal",
@@ -17,7 +17,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Adrian\",\r\n  \"username\": \"Adrianmfffff\",\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+              "raw": "{\r\n  \"name\": \"Alan\",\r\n  \"username\": \"Alcon\",\r\n  \"email\": \"alan2007lf@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -50,10 +50,10 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Erick\",\r\n  \"username\": \"Folgar\",\r\n  \"email\": \"mauriciof20082@gmail.com\",\r\n  \"password\": \"EMFA5E2021545.\"\r\n}"
+              "raw": "{\r\n  \"name\": \"Alan\",\r\n  \"username\": \"Alcon\",\r\n  \"email\": \"alan2007lf@gmail.com\",\r\n  \"password\": \"123456\"\r\n}"
             },
             "url": {
-              "raw": "http://localhost:3005/api/auth/verify/{{vault:json-web-token}}",
+              "raw": "http://localhost:3005/api/auth/verify/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJpYXQiOjE3NzE2MTc4NjIsImV4cCI6MTc3MTYyMTQ2Mn0.fqzj9OHChxh5_O0D2N6AI1iuZ4pzlfkyb5-MR1GevLI",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -63,7 +63,7 @@
                 "api",
                 "auth",
                 "verify",
-                "{{vault:json-web-token}}"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJpYXQiOjE3NzE2MTc4NjIsImV4cCI6MTc3MTYyMTQ2Mn0.fqzj9OHChxh5_O0D2N6AI1iuZ4pzlfkyb5-MR1GevLI"
               ]
             }
           },
@@ -76,7 +76,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+              "raw": "{\r\n  \"email\": \"alan2007lf@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -107,7 +107,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{vault:authorization-secret}}",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
                   "type": "string"
                 }
               ]
@@ -152,7 +152,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{vault:authorization-secret}}",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
                   "type": "string"
                 }
               ]
@@ -164,13 +164,13 @@
               "formdata": [
                 {
                   "key": "title",
-                  "value": "Saben que se puede reutilizar el cafe?",
+                  "value": "GUATEMALA",
                   "type": "text",
                   "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78"
                 },
                 {
                   "key": "content",
-                  "value": "El cafe se puede usar como abono para las plantas ;0",
+                  "value": "El mejor país del mundo",
                   "type": "text",
                   "uuid": "2de275e2-2070-40c7-891b-b617e45c481d"
                 },
@@ -178,7 +178,7 @@
                   "key": "photo",
                   "type": "file",
                   "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
-                  "src": "postman-cloud:///1f103e18-830c-4ae0-b65d-3e4659a89527"
+                  "src": "/C:/Users/Francisco/Downloads/tikal.JPG"
                 }
               ]
             },
@@ -210,7 +210,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{vault:authorization-secret}}",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
                   "type": "string"
                 }
               ]
@@ -265,7 +265,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{vault:authorization-secret}}",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
                   "type": "string"
                 }
               ]
@@ -296,7 +296,7 @@
               ]
             },
             "url": {
-              "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/update/699cf6921ea24cf3f436aa43",
+              "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/update/6998bff7680abe11abf2a3a2",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -307,7 +307,7 @@
                 "v1",
                 "posts",
                 "update",
-                "699cf6921ea24cf3f436aa43"
+                "6998bff7680abe11abf2a3a2"
               ]
             }
           },
@@ -321,7 +321,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{vault:authorization-secret}}",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
                   "type": "string"
                 }
               ]
@@ -375,130 +375,35 @@
       ]
     },
     {
-      "name": "Comentarios ForoEcoKinal",
+      "name": "ClasificarImagen",
       "item": [
         {
-          "name": "Crear Comentario",
+          "name": "ClasificarImagen",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMjY2ZDUzMC1lYjhmLTQ0NDctOTZlNC0zODhlN2ZjMmM1NDAiLCJyb2xlIjoiZDUzNGVlNDItYWNhYy00Y2I1LTgxNzgtM2JhMTVkNDQ5MWY1IiwiaWF0IjoxNzcxODk0NTYyLCJleHAiOjE3NzE4OTgxNjJ9.YhMlP2xhkDyJ8H1CNhmvabiVuFx8BrjvBn5dT1KIrqE",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"content\": \"Este es un comentario de prueba para el foro :D\",\r\n    \"publicationId\": \"699cf6921ea24cf3f436aa43\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/add",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3006",
-              "path": [
-                "ForoEcoKinal",
-                "v1",
-                "comments",
-                "add"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Ver Comentario",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": ""
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Actualizar Comentario",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
+              "mode": "formdata",
+              "formdata": [
                 {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMjY2ZDUzMC1lYjhmLTQ0NDctOTZlNC0zODhlN2ZjMmM1NDAiLCJyb2xlIjoiZDUzNGVlNDItYWNhYy00Y2I1LTgxNzgtM2JhMTVkNDQ5MWY1IiwiaWF0IjoxNzcxODk0NTYyLCJleHAiOjE3NzE4OTgxNjJ9.YhMlP2xhkDyJ8H1CNhmvabiVuFx8BrjvBn5dT1KIrqE",
-                  "type": "string"
+                  "key": "imagen",
+                  "type": "file",
+                  "uuid": "60e87417-3dce-46f7-88f5-5e188a192f2f",
+                  "src": "/C:/Users/Francisco/Downloads/botella.jpg"
                 }
               ]
             },
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"content\": \"Perdon bro, me pase jajaja\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/update/699cf7721ea24cf3f436aa4b",
+              "raw": "http://localhost:3007/api/vision/clasificar",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "3006",
+              "port": "3007",
               "path": [
-                "ForoEcoKinal",
-                "v1",
-                "comments",
-                "update",
-                "699cf7721ea24cf3f436aa4b"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Eliminar Comentario",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{vault:authorization-secret}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/delete/699cf7721ea24cf3f436aa4b",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3006",
-              "path": [
-                "ForoEcoKinal",
-                "v1",
-                "comments",
-                "delete",
-                "699cf7721ea24cf3f436aa4b"
+                "api",
+                "vision",
+                "clasificar"
               ]
             }
           },

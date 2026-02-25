@@ -3,7 +3,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
- 
+import visionRoutes from '../DetectorImagen/clasificacion.routes.js';
  
 const BASE_PATH = '/DetectorImagenReciclaje/v1';
  
@@ -14,6 +14,9 @@ export const createApp = () => {
     app.use(express.json());
     app.use(cors());
     app.use(helmet());
+
+    //Ruta
+    app.use('/api/vision', visionRoutes);
  
     // Ruta de prueba
     app.get(`${BASE_PATH}/health`, (req, res) => {
