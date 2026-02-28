@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "87780b76-e35e-4ade-8294-80a7cb3ae237",
+    "_postman_id": "36e4e40f-2a0f-40a4-8965-367352daf2e9",
     "name": "EcoKinal",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "48332460",
-    "_collection_link": "https://go.postman.co/collection/48332460-87780b76-e35e-4ade-8294-80a7cb3ae237?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/48332460-36e4e40f-2a0f-40a4-8965-367352daf2e9?source=collection_link"
   },
   "item": [
     {
@@ -50,7 +50,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Alan\",\r\n  \"username\": \"Alcon\",\r\n  \"email\": \"alan2007lf@gmail.com\",\r\n  \"password\": \"123456\"\r\n}"
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:3005/api/auth/verify/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJpYXQiOjE3NzE2MTc4NjIsImV4cCI6MTc3MTYyMTQ2Mn0.fqzj9OHChxh5_O0D2N6AI1iuZ4pzlfkyb5-MR1GevLI",
@@ -380,6 +385,16 @@
         {
           "name": "ClasificarImagen",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5NDc2NjBmYS1kYWQxLTQ1NjktOGEzZC1jYzhhMzRkOGJmOGYiLCJyb2xlIjoiY2I5ZTNkZDUtODNlNy00YTJiLTk2YjUtNGZlZmEzYjc1ZTA3IiwiaWF0IjoxNzcyMjUxNjgzLCJleHAiOjE3NzIyNTUyODN9.Dj8kgytlH91b-rwsRBV_ezMCmsSwV_aJ41YbqBJAbDs",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [],
             "body": {
@@ -389,7 +404,7 @@
                   "key": "imagen",
                   "type": "file",
                   "uuid": "60e87417-3dce-46f7-88f5-5e188a192f2f",
-                  "src": "/C:/Users/Francisco/Downloads/botella.jpg"
+                  "src": "/C:/Users/Francisco/Downloads/123.jpg"
                 }
               ]
             },

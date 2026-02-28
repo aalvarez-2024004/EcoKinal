@@ -3,7 +3,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import visionRoutes from '../DetectorImagen/clasificacion.routes.js';
+import visionRoutes from '../src/ClasificacionImagen/clasificacion.routes.js';
  
 const BASE_PATH = '/DetectorImagenReciclaje/v1';
  
