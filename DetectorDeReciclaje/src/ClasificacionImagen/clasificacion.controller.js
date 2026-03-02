@@ -1,4 +1,5 @@
 'use strict'
+import mongoose from "mongoose";
 import { detectarLabels } from "./clasificacion.service.js";
 import Clasificacion from "./clasificacion.model.js";
 import fs from "fs";
@@ -18,6 +19,8 @@ export const clasificarImagen = async (req, res) => {
 
         const labels = await detectarLabels(imagePath, req.file.mimetype);
         const resultado = clasificarResiduo(labels);
+
+        const customId = new mongoose.Types.ObjectId().toString();
 
         const registro = await Clasificacion.create({
         imagen: req.file.filename,

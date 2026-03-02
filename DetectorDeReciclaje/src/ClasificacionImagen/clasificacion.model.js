@@ -2,6 +2,11 @@
 import mongoose, { Schema, model } from "mongoose";
 
 const clasificacionSchema = mongoose.Schema({
+    id: {
+        type: String,
+        required: true,
+        unique: true
+    },
     imagen:{
         type:String,
         required: [true, 'Es necesario que añadas una imagen para clasificar en que lugar va']
