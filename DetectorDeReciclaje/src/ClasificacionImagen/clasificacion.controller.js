@@ -1,10 +1,12 @@
 'use strict'
-import mongoose from "mongoose";
 import { detectarLabels } from "./clasificacion.service.js";
 import Clasificacion from "./clasificacion.model.js";
 import fs from "fs";
 
 export const clasificarImagen = async (req, res) => {
+
+    let imagePath = null;
+
     try {
 
         if (!req.file) {
@@ -14,42 +16,38 @@ export const clasificarImagen = async (req, res) => {
             });
         }
 
-        const imagePath = req.file.path;
-
+        imagePath = req.file.path;
 
         const labels = await detectarLabels(imagePath, req.file.mimetype);
+
         const resultado = clasificarResiduo(labels);
 
-        const customId = new mongoose.Types.ObjectId().toString();
-
         const registro = await Clasificacion.create({
-        imagen: req.file.filename,
-        labels,
-        tipo: resultado.tipo,
-        contenedor: resultado.contenedor
+            imagen: req.file.filename,
+            labels,
+            tipo: resultado.tipo,
+            contenedor: resultado.contenedor
         });
-
-        //eliminar la imagen para no saturar el servidor
-        fs.unlinkSync(req.file.path);
 
         return res.status(200).json({
             success: true,
             message: "Imagen clasificada correctamente",
-            resultado: {
-                tipo: resultado.tipo,
-                descripcion: resultado.descripcion,
-                contenedor: resultado.contenedor
-            }
-        })
+            data: registro
+        });
 
     } catch (error) {
+        
+        if (imagePath && fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath);
+        }
+
         return res.status(500).json({
             success: false,
             message: "Error al clasificar la imagen",
             error: error.message
         });
     }
-}
+};
 
 const clasificarResiduo = (labels) => {
     //convierte a minusculas y se unen todos los labels en un solo texto

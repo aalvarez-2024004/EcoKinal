@@ -21,3 +21,21 @@ export const changePassword = async (userId, currentPassword, newPassword) => {
 
   return { message: 'Contraseña actualizada correctamente' }
 }
+
+export const updateUserProfile = async (userId, data) => {
+
+  const user = await User.findByPk(userId)
+
+  if (!user) {
+    throw new Error('Usuario no encontrado')
+  }
+
+  await user.update(data)
+
+  return {
+    id: user.id,
+    name: user.name,
+    username: user.username,
+    email: user.email
+  }
+}

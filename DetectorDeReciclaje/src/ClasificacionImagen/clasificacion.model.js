@@ -4,8 +4,8 @@ import mongoose, { Schema, model } from "mongoose";
 const clasificacionSchema = mongoose.Schema({
     id: {
         type: String,
-        required: true,
-        unique: true
+        unique: true,
+        default: () => new mongoose.Types.ObjectId().toString()
     },
     imagen:{
         type:String,
@@ -26,6 +26,14 @@ const clasificacionSchema = mongoose.Schema({
     fecha: {
         type: Date,
         default: Date.now
+    }
+}, {
+    toJSON: {
+        transform: function(doc, ret) {
+            ret.id = ret._id;
+            delete ret._id;
+            delete ret.__v;
+        }
     }
 })
 
