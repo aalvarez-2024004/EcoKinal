@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 export const changePassword = async (userId, currentPassword, newPassword) => {
   const user = await User.findByPk(userId)
 
-  if (!user) {
+  if (!user) {  
     throw new Error('Usuario no encontrado')
   }
 
@@ -35,7 +35,6 @@ export const updateUserProfile = async (userId, data) => {
   return {
     id: user.id,
     name: user.name,
-    username: user.username,
-    email: user.email
+    username: user.username
   }
 }

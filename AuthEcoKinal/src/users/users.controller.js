@@ -1,4 +1,4 @@
-import { changePassword } from './users.service.js'
+import { changePassword, updateUserProfile } from './users.service.js'
 
 export const updateMyPassword = async (req, res) => {
   try {
@@ -19,9 +19,9 @@ export const updateMyPassword = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { name, username, email } = req.body;
+    const { name, username } = req.body
 
-  if (!name || name.trim() === '') {
+    if (!name || name.trim() === '') {
       return res.status(400).json({
         error: 'El nombre no puede estar vacío'
       })
@@ -33,33 +33,19 @@ export const updateProfile = async (req, res) => {
       })
     }
 
-    if (!email || email.trim() === '') {
-      return res.status(400).json({
-        error: 'El correo no puede estar vacío'
-      })
-    }
-
-    const emailValidated = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailValidated.test(email)) {
-      return res.status(400).json({
-        error: 'Debes proporcionar un correo válido'
-      })
-    }
-
-    const updatedUser = await updateUserProfile (req.user.id, {
+    const updatedUser = await updateUserProfile(req.user.id, {
       name: name.trim(),
-      username: username.trim(),
-      email: email.trim()
+      username: username.trim()
     })
 
     res.json({
       message: 'Usuario actualizado correctamente',
       user: updatedUser
     })
-  } catch (error) {
-      res.status(400).json({
-          error: error.message 
-        })
-  }
 
+  } catch (error) {
+    res.status(400).json({
+      error: error.message
+    })
+  }
 }
