@@ -1,14 +1,14 @@
 {
   "info": {
-    "_postman_id": "36e4e40f-2a0f-40a4-8965-367352daf2e9",
-    "name": "EcoKinal",
+    "_postman_id": "8eddff4e-e1d5-4729-a64a-7d37ba48cbb7",
+    "name": "EcoKinal Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "48332460",
-    "_collection_link": "https://go.postman.co/collection/48332460-36e4e40f-2a0f-40a4-8965-367352daf2e9?source=collection_link"
+    "_exporter_id": "48332481",
+    "_collection_link": "https://go.postman.co/collection/48332481-8eddff4e-e1d5-4729-a64a-7d37ba48cbb7?source=collection_link"
   },
   "item": [
     {
-      "name": "AuthServiceEcoKinal",
+      "name": "AuthEcoKinal",
       "item": [
         {
           "name": "RegisterEcoKinal",
@@ -17,7 +17,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Alan\",\r\n  \"username\": \"Alcon\",\r\n  \"email\": \"alan2007lf@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "raw": "{\r\n  \"name\": \"Adrian\",\r\n  \"username\": \"Adrianmfffff\",\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -50,15 +50,10 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+              "raw": "{\r\n  \"name\": \"Erick\",\r\n  \"username\": \"Folgar\",\r\n  \"email\": \"mauriciof20082@gmail.com\",\r\n  \"password\": \"EMFA5E2021545.\"\r\n}"
             },
             "url": {
-              "raw": "http://localhost:3005/api/auth/verify/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJpYXQiOjE3NzE2MTc4NjIsImV4cCI6MTc3MTYyMTQ2Mn0.fqzj9OHChxh5_O0D2N6AI1iuZ4pzlfkyb5-MR1GevLI",
+              "raw": "http://localhost:3005/api/auth/verify/{{vault:json-web-token}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -68,7 +63,7 @@
                 "api",
                 "auth",
                 "verify",
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJpYXQiOjE3NzE2MTc4NjIsImV4cCI6MTc3MTYyMTQ2Mn0.fqzj9OHChxh5_O0D2N6AI1iuZ4pzlfkyb5-MR1GevLI"
+                "{{vault:json-web-token}}"
               ]
             }
           },
@@ -81,7 +76,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": \"alan2007lf@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "raw": "{\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"Nueva1234\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -112,7 +107,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
+                  "value": "{{vault:authorization-secret}}",
                   "type": "string"
                 }
               ]
@@ -139,6 +134,107 @@
                 "api",
                 "users",
                 "change-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CambiarNombre / Usuario",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Adriancitoo\",\r\n  \"username\": \"Adrianmf\",\r\n  \"email\": \"tovartravis4@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/users/update-profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "users",
+                "update-profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Olvidar contrasena link",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"tovartravis4@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/auth/forgot-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar contrasrna",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"token\": \"eb10683d1087e9cfd70d4bb346abf13a34667975f5fb095ba712ff631b6c0217\",\r\n  \"newPassword\": \"Nueva1234\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/auth/reset-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "auth",
+                "reset-password"
               ]
             }
           },
