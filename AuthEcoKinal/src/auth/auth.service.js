@@ -3,6 +3,8 @@ import { hashPassword, comparePassword } from '../../helpers/hash-password.js'
 import { generateJWT } from '../../helpers/generate-jwt.js'
 import { generateVerificationToken } from '../../helpers/generate-verification-token.js'
 import { sendVerificationEmail } from '../../helpers/send-email.js'
+import crypto from 'crypto'
+import { sendResetPasswordEmail } from '../../helpers/send-email.js'
  
 import jwt from 'jsonwebtoken'
 import { config } from '../../configs/config.js'
@@ -91,3 +93,53 @@ export const verifyAccount = async (token) => {
   }
 }
  
+export const requestPasswordReset = async (email) => {
+  const user = await User.findOne({ where: { email } })
+
+  if (!user) {
+    // Por seguridad NO se dice que existe
+    return { message: 'Si el correo existe, se enviará un enlace' }
+  }
+
+  const token = crypto.randomBytes(32).toString('hex')
+
+  const expiration = new Date(Date.now() + 1000 * 60 * 30)
+
+  await user.update({
+    resetPasswordToken: token,
+    resetPasswordExpires: expiration
+  })
+
+  await sendResetPasswordEmail(user.email, token)
+
+  return {
+    message: 'Si el correo existe, se enviará un enlace.'
+  }
+}
+
+export const resetPassword = async (token, newPassword) => {
+
+  const user = await User.findOne({
+    where: { resetPasswordToken: token }
+  })
+
+  if (!user) {
+    throw new Error('Token inválido')
+  }
+
+  if (user.resetPasswordExpires < new Date()) {
+    throw new Error('Token expirado')
+  }
+
+  const hashedPassword = await hashPassword(newPassword)
+
+  await user.update({
+    password: hashedPassword,
+    resetPasswordToken: null,
+    resetPasswordExpires: null
+  })
+
+  return {
+    message: 'Contraseña actualizada correctamente'
+  }
+}

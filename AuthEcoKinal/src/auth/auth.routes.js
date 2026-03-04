@@ -1,5 +1,11 @@
 import { Router } from 'express'
-import { register, login, verify } from './auth.controller.js'
+import { 
+  register, 
+  login, 
+  verify, 
+  forgotPassword, 
+  resetPassword 
+} from './auth.controller.js'
 
 import { validateJWT } from '../../middlewares/validate-jwt.js'
 
@@ -15,5 +21,8 @@ router.get('/profile', validateJWT, (req, res) => {
     user: req.user
   })
 })
+
+router.post('/forgot-password', forgotPassword)
+router.post('/reset-password', resetPassword)
 
 export default router
