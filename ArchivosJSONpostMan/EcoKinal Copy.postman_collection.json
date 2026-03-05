@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "f82bb44d-ef5c-4d5c-9f2c-e0ee48d2d533",
+    "_postman_id": "df6c0a41-5d27-4fa5-86ac-06ddceba6bd4",
     "name": "EcoKinal Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "48332503",
-    "_collection_link": "https://go.postman.co/collection/48332503-f82bb44d-ef5c-4d5c-9f2c-e0ee48d2d533?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/48332503-df6c0a41-5d27-4fa5-86ac-06ddceba6bd4?source=collection_link"
   },
   "item": [
     {
@@ -528,16 +528,37 @@
         {
           "name": "My Gamification",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
-            "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "Perfil",
-          "request": {
-            "method": "GET",
-            "header": []
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3008/gamification/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "gamification",
+                "me"
+              ]
+            }
           },
           "response": []
         },
@@ -547,12 +568,12 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:3007/GamificationEcoKinal/v1/gamification/ranking",
+              "raw": "http://localhost:3008/GamificationEcoKinal/v1/gamification/ranking",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "3007",
+              "port": "3008",
               "path": [
                 "GamificationEcoKinal",
                 "v1",

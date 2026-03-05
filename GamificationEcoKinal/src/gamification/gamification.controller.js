@@ -1,51 +1,33 @@
 'use strict';
 
-import Gamification from './gamification.model.js';
+import {
+    addPointsService,
+    getGamificationByUser,
+    getRankingService
+} from './gamification.service.js';
 
-
-//  Agregar puntos cuando se valida reciclaje
+// Agregar puntos
 export const addPoints = async (req, res) => {
     try {
-        const userId = req.user.uid;
+        console.log('REQ.USER:', req.user);
+        const userId = req.user.id || req.user.uid;
 
-        let userGamification = await Gamification.findOne({ userId });
-
-        // Si no existe registro, lo creamos
-        if (!userGamification) {
-            userGamification = new Gamification({
-                userId,
-                points: 0,
-                badges: [],
-                recyclingCount: 0
+        if (!userId) {
+            return res.status(400).json({
+                ok: false,
+                message: 'Usuario no identificado desde el token'
             });
         }
 
-        // Sumamos puntos
-        userGamification.points += 10;
-        userGamification.recyclingCount += 1;
-
-        // Sistema de insignias automático
-        if (userGamification.points >= 50 && !userGamification.badges.includes('Reciclador Básico')) {
-            userGamification.badges.push('Reciclador Básico');
-        }
-
-        if (userGamification.points >= 150 && !userGamification.badges.includes('Reciclador Intermedio')) {
-            userGamification.badges.push('Reciclador Intermedio');
-        }
-
-        if (userGamification.points >= 300 && !userGamification.badges.includes('Experto')) {
-            userGamification.badges.push('Experto');
-        }
-
-        await userGamification.save();
+        const data = await addPointsService(userId, 10);
 
         return res.status(200).json({
             ok: true,
             message: 'Puntos agregados correctamente',
-            data: userGamification
+            data
         });
-
     } catch (error) {
+        console.error('Error en addPoints:', error);
         return res.status(500).json({
             ok: false,
             message: 'Error al agregar puntos',
@@ -54,18 +36,24 @@ export const addPoints = async (req, res) => {
     }
 };
 
-
-//  Obtener perfil de gamificación del usuario
+// Obtener mi perfil
 export const getMyGamification = async (req, res) => {
     try {
-        const userId = req.user.uid;
+        const userId = req.user.id || req.user.uid;
 
-        const data = await Gamification.findOne({ userId });
+        if (!userId) {
+            return res.status(400).json({
+                ok: false,
+                message: 'Usuario no identificado desde el token'
+            });
+        }
+
+        const data = await getGamificationByUser(userId);
 
         if (!data) {
             return res.status(404).json({
                 ok: false,
-                message: 'No existe registro de gamificación'
+                message: 'El usuario aún no tiene puntos'
             });
         }
 
@@ -73,8 +61,8 @@ export const getMyGamification = async (req, res) => {
             ok: true,
             data
         });
-
     } catch (error) {
+        console.error('Error en getMyGamification:', error);
         return res.status(500).json({
             ok: false,
             message: 'Error al obtener datos',
@@ -83,21 +71,16 @@ export const getMyGamification = async (req, res) => {
     }
 };
 
-
-// 🔹 Ranking global
+// Obtener ranking top 10
 export const getRanking = async (req, res) => {
     try {
-        const ranking = await Gamification
-            .find()
-            .sort({ points: -1 })
-            .limit(10);
-
+        const ranking = await getRankingService();
         return res.status(200).json({
             ok: true,
             ranking
         });
-
     } catch (error) {
+        console.error('Error en getRanking:', error);
         return res.status(500).json({
             ok: false,
             message: 'Error al obtener ranking',

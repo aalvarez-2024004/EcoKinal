@@ -2,6 +2,7 @@
 import { detectarLabels } from "./clasificacion.service.js";
 import Clasificacion from "./clasificacion.model.js";
 import fs from "fs";
+import axios from 'axios';
 
 export const clasificarImagen = async (req, res) => {
 
@@ -28,6 +29,18 @@ export const clasificarImagen = async (req, res) => {
             tipo: resultado.tipo,
             contenedor: resultado.contenedor
         });
+
+                // *** Aquí agregamos la llamada para sumar puntos ***
+        try {
+            await axios.post('http://localhost:3008/gamification/add-points', {}, {
+                headers: {
+                    Authorization: req.headers.authorization // Pasamos el token JWT
+                }
+            });
+        } catch (error) {
+            console.error('Error al sumar puntos en gamificación:', error.message);
+            // No abortamos el proceso principal, solo logueamos el error
+        }
 
         return res.status(200).json({
             success: true,
