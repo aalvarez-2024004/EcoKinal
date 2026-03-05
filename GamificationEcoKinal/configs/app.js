@@ -3,6 +3,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import { swaggerDocs } from './docs/swagger.js';
 
 import { corsOptions } from './cors-configuration.js';
 import { helmetConfiguration } from './helmet-configuration.js';
@@ -28,6 +29,7 @@ export const createApp = () => {
             message: 'API funcionando correctamente'
         });
     });
-
+    // Swagger
+    swaggerDocs(app);
     return app;
 };
