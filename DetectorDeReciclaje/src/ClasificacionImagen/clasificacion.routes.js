@@ -16,6 +16,41 @@ const upload = multer({
     }
 });
 
+/**
+ * @swagger
+ * tags:
+ *   name: Clasificacion
+ *   description: Endpoints para clasificación de imágenes reciclables
+ */
+
+/**
+ * @swagger
+ * /api/vision/clasificar:
+ *   post:
+ *     summary: Clasificar imagen reciclable
+ *     description: Recibe una imagen y devuelve el tipo de material detectado
+ *     tags: [Clasificacion]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               imagen:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Imagen clasificada correctamente
+ *       401:
+ *         description: Token inválido o no enviado
+ *       400:
+ *         description: Error en la petición
+ */
+
 router.post(
     "/clasificar", 
     verifyToken,
