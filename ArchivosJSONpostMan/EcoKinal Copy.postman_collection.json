@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "8eddff4e-e1d5-4729-a64a-7d37ba48cbb7",
+    "_postman_id": "f82bb44d-ef5c-4d5c-9f2c-e0ee48d2d533",
     "name": "EcoKinal Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "48332481",
-    "_collection_link": "https://go.postman.co/collection/48332481-8eddff4e-e1d5-4729-a64a-7d37ba48cbb7?source=collection_link"
+    "_exporter_id": "48332503",
+    "_collection_link": "https://go.postman.co/collection/48332503-f82bb44d-ef5c-4d5c-9f2c-e0ee48d2d533?source=collection_link"
   },
   "item": [
     {
@@ -253,7 +253,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
+                  "value": "{{vault:authorization-secret}}",
                   "type": "string"
                 }
               ]
@@ -311,7 +311,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
+                  "value": "{{vault:authorization-secret}}",
                   "type": "string"
                 }
               ]
@@ -366,7 +366,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
+                  "value": "{{vault:authorization-secret}}",
                   "type": "string"
                 }
               ]
@@ -422,7 +422,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMzRlNTRhNy0yYzkwLTQ0MTItODkyNy1jYWI1NjcxMjRlNTMiLCJyb2xlIjoiN2E1ZTcxYmQtMDQ5NS00ODRmLWFlZWUtMGJmNmU0YzM4MWEzIiwiaWF0IjoxNzcxNjE3OTU4LCJleHAiOjE3NzE2MjE1NTh9.0EBhobagVllgq4gIkt-PSOjHH-BWd4e7vD1yO1oDH2c",
+                  "value": "{{vault:authorization-secret}}",
                   "type": "string"
                 }
               ]
@@ -486,7 +486,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5NDc2NjBmYS1kYWQxLTQ1NjktOGEzZC1jYzhhMzRkOGJmOGYiLCJyb2xlIjoiY2I5ZTNkZDUtODNlNy00YTJiLTk2YjUtNGZlZmEzYjc1ZTA3IiwiaWF0IjoxNzcyMjUxNjgzLCJleHAiOjE3NzIyNTUyODN9.Dj8kgytlH91b-rwsRBV_ezMCmsSwV_aJ41YbqBJAbDs",
+                  "value": "{{vault:authorization-secret}}",
                   "type": "string"
                 }
               ]
@@ -515,6 +515,49 @@
                 "api",
                 "vision",
                 "clasificar"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Gamificacion",
+      "item": [
+        {
+          "name": "My Gamification",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Perfil",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Ranking global",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3007/GamificationEcoKinal/v1/gamification/ranking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3007",
+              "path": [
+                "GamificationEcoKinal",
+                "v1",
+                "gamification",
+                "ranking"
               ]
             }
           },
