@@ -1,28 +1,35 @@
 import { Router } from "express";
 import multer from "multer";
-import{clasificarImagen} from "./clasificacion.controller.js";
-import { verifyToken } from "../../middlewares/validate-JWT.js"
-
+import path from "path";
+import { clasificarImagen } from "./clasificacion.controller.js";
+import { verifyToken } from "../../middlewares/validate-JWT.js";
+ 
 const router = Router();
-//en la carpeta uploads se guardarán las imagenes temporalmente
-const upload = multer({
-    dest: "uploads/",
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype.startsWith("image/")) {
-            cb(null, true);
-        } else {
-            cb(new Error("Solo se permiten imágenes"), false);
-        }
-    }
+ 
+// configuración de almacenamiento
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, Date.now() + ext); // Guarda la extensión original
+  }
 });
-
+ 
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith("image/")) cb(null, true);
+    else cb(new Error("Solo se permiten imágenes"), false);
+  }
+});
+ 
 /**
  * @swagger
  * tags:
  *   name: Clasificacion
  *   description: Endpoints para clasificación de imágenes reciclables
  */
-
+ 
 /**
  * @swagger
  * /api/vision/clasificar:
@@ -50,12 +57,13 @@ const upload = multer({
  *       400:
  *         description: Error en la petición
  */
-
+ 
 router.post(
-    "/clasificar", 
+    "/clasificar",
     verifyToken,
-    upload.single("imagen"), 
+    upload.single("imagen"),
     clasificarImagen
 );
-
+ 
 export default router;
+ 

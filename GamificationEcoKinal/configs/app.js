@@ -3,12 +3,12 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { swaggerDocs } from './docs/swagger.js';
+import { swaggerDocs } from '../docs/swagger.js';
 
 import { corsOptions } from './cors-configuration.js';
 import { helmetConfiguration } from './helmet-configuration.js';
 
-import { gamificationRoutes } from '../src/gamification/gamification.routes.js';
+import gamificationRoutes from '../src/gamification/gamification.routes.js';
 
 const BASE_PATH = '/GamificationEcoKinal/v1';
 

@@ -83,4 +83,4 @@ router.get('/me', validateJWT, getMyGamification);
  */
 router.get('/ranking', getRanking);
 
-export { router as gamificationRoutes };
+export default router;
