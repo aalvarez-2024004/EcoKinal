@@ -84,38 +84,28 @@ y dirigirse hacia la carpeta llamada: ClasificarImagen
     5. Presionar Try it out para ejecutar las peticiones.
     
 # INSTRUCCIONES DE GAMIFICACION
-Abrir una terminal nueva y situarse en la carpeta del proyecto con el comando: "cd GamificationEcoKinal"
- 
-Instalar dependencias del proyecto: pnpm install
- 
-Instalar axios (necesario para que DetectorDeReciclaje pueda enviar las solicitudes para sumar puntos automáticamente):
- 
-pnpm install axios
- 
+Abrir una terminal nueva y entrar en la carpeta del proyecto con el comando: "cd GamificacionEcoKinal"
 
-Cargar variables de entorno:
- 
-Verifica que tengas tu archivo .env con las configuraciones correctas de puerto y base de datos MongoDB.
- 
+Instalar dependencias del proyecto: pnpm install
+
+Verificar que tengas tu archivo .env con las configuraciones correctas.
+
 Iniciar servidor de Gamificación: pnpm run dev
 
- 
 Por defecto, corre en http://localhost:3008
- 
+
 Debes ver en la consola:
- 
 MongoDB | conectado a MongoDB
 GamificationEcoKinal corriendo en puerto 3008
- 
-Probar los endpoints en Postman o Swagger:
- 
-Swagger: http://localhost:3008/api-docs
 
-Primero inicia AuthEcoKinal y obtén el token JWT.
- 
-Luego inicia DetectorDeReciclaje y clasifica una imagen.
- 
-Finalmente revisa tu perfil de gamificación con GET /gamification/me para confirmar que los puntos se sumaron correctamente.
+Probar los endpoints desde Swagger:
+http://localhost:3008/GamificationEcoKinal/v1/docs
+
+1. Primero inicia AuthEcoKinal y obtén el token JWT.
+2. En Swagger, presionar el botón Authorize.
+3. Pegar el token en formato: Bearer TU_TOKEN_AQUI
+4. Clasifica una imagen en DetectorDeReciclaje para que los puntos se sumen automáticamente.
+5. Revisa tu perfil con GET /gamification/me para confirmar que los puntos se sumaron.
 
 # INSTRUCCIÓN MAPEADO - MAPA ECO KINAL
 1er paso — Ubicarse en la carpeta del proyecto

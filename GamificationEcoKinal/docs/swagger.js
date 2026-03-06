@@ -15,7 +15,7 @@ const options = {
         },
         servers: [
             {
-                url: `http://localhost:3007${BASE_PATH}`
+                url: `http://localhost:3008${BASE_PATH}`
             }
         ],
         components: {

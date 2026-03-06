@@ -35,7 +35,7 @@ export const clasificarImagen = async (req, res) => {
         });
         
         try {
-            await axios.post('http://localhost:3008/gamification/add-points', {}, {
+            await axios.post('http://localhost:3008/GamificationEcoKinal/v1/gamification/add-points', {}, {
                 headers: { Authorization: req.headers.authorization }
             });
         } catch (error) {

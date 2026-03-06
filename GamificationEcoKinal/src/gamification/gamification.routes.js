@@ -10,13 +10,19 @@ import {
 
 const router = Router();
 
-// Sumar puntos (cuando Detector valide reciclaje)
+/**
+ * @swagger
+ * tags:
+ *   name: Gamification
+ *   description: Endpoints de gamificación y puntos de reciclaje
+ */
 
 /**
  * @swagger
  * /gamification/add-points:
  *   post:
  *     summary: Agregar 10 puntos por reciclaje validado
+ *     description: Llamado automáticamente desde DetectorDeReciclaje al clasificar una imagen. Requiere JWT válido.
  *     tags: [Gamification]
  *     security:
  *       - bearerAuth: []
@@ -27,6 +33,18 @@ const router = Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/SuccessResponse'
+ *       400:
+ *         description: Usuario no identificado en el token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token inválido o no enviado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       500:
  *         description: Error del servidor
  *         content:
@@ -36,13 +54,12 @@ const router = Router();
  */
 router.post('/add-points', validateJWT, addPoints);
 
-//  Obtener mi perfil de gamificación
-
 /**
  * @swagger
  * /gamification/me:
  *   get:
  *     summary: Obtener perfil de gamificación del usuario autenticado
+ *     description: Devuelve los puntos, insignias y conteo de reciclajes del usuario.
  *     tags: [Gamification]
  *     security:
  *       - bearerAuth: []
@@ -53,23 +70,35 @@ router.post('/add-points', validateJWT, addPoints);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/SuccessResponse'
+ *       400:
+ *         description: Usuario no identificado en el token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Token inválido o no enviado
  *       404:
- *         description: No existe registro
+ *         description: El usuario aún no tiene puntos registrados
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       500:
  *         description: Error del servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.get('/me', validateJWT, getMyGamification);
 
-//  Obtener ranking global
 /**
  * @swagger
  * /gamification/ranking:
  *   get:
  *     summary: Obtener ranking global top 10
+ *     description: Devuelve los 10 usuarios con más puntos ordenados de mayor a menor.
  *     tags: [Gamification]
  *     responses:
  *       200:
@@ -80,6 +109,10 @@ router.get('/me', validateJWT, getMyGamification);
  *               $ref: '#/components/schemas/RankingResponse'
  *       500:
  *         description: Error del servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.get('/ranking', getRanking);
 
