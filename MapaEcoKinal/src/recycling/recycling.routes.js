@@ -12,12 +12,17 @@ const router = Router();
  *     description: Retorna los 5 centros de reciclaje más cercanos según la latitud y longitud enviadas.
  *     tags:
  *       - Recycling
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - lat
+ *               - lon
  *             properties:
  *               lat:
  *                 type: number
@@ -61,6 +66,8 @@ const router = Router();
  *                     example: -90.507
  *       400:
  *         description: Faltan parámetros
+ *       401:
+ *         description: Token inválido o no proporcionado
  *       500:
  *         description: Error interno del servidor
  */

@@ -11,10 +11,19 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:3000",
+                url: "http://localhost:3001",
                 description: "Servidor local"
             }
-        ]
+        ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT"
+                }
+            }
+        }
     },
     apis: ["./src/recycling/*.js"]
 };
