@@ -3,8 +3,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from 'swagger-jsdoc';
+import{swaggerUi, swaggerDocs} from '../docs/swagger.js';
  
 import visionRoutes from '../src/ClasificacionImagen/clasificacion.routes.js';
  
@@ -21,36 +20,7 @@ export const createApp = () => {
     //se ignoran los errores de certificados SSL
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
  
-    // Swagger config
-    const swaggerOptions = {
-        definition: {
-            openapi: "3.0.0",
-            info: {
-                title: "API Detector de Reciclaje",
-                version: "1.0.0",
-                description: "Documentación de la API para clasificar imágenes reciclables"
-            },
-            servers: [
-                {
-                    url: "http://localhost:3007"
-                }
-            ],
-        components: {
-            securitySchemes: {
-                bearerAuth: {
-                    type: "http",
-                    scheme: "bearer",
-                    bearerFormat: "JWT"
-                    }
-                }
-            }
-        },
-        apis: ["./src/ClasificacionImagen/**/*.js"] // aquí busca los comentarios swagger
-    };
- 
-    const swaggerSpec = swaggerJsdoc(swaggerOptions);
- 
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  
     // Rutas
     app.use('/api/vision', visionRoutes);
