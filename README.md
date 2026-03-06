@@ -95,3 +95,56 @@ Primero inicia AuthEcoKinal y obtén el token JWT.
 Luego inicia DetectorDeReciclaje y clasifica una imagen.
  
 Finalmente revisa tu perfil de gamificación con GET /gamification/me para confirmar que los puntos se sumaron correctamente.
+
+# INSTRUCCIÓN MAPEADO - MAPA ECO KINAL
+1er paso — Ubicarse en la carpeta del proyecto
+Abrir una terminal y situarse en la carpeta MapaEcoKinal con el siguiente comando:
+cd MapaEcoKinal
+
+2do paso — Instalar dependencias
+Estando dentro de la carpeta, ejecutar:
+pnpm install
+
+3er paso — Configurar variables de entorno
+Verificar que exista el archivo .env en la raíz del proyecto con el siguiente contenido:
+ORS_API_KEY=eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImExZmQyYWEwNTA0MzQ4ZWI4NzFkMjAyM2I2YmFiOWE4IiwiaCI6Im11cm11cjY0In0=
+PORT=3006
+# NOTA: El puerto por defecto es 3006. Puedes modificarlo según necesites.
+
+4to paso — Ejecutar el servidor
+Correr el servidor en modo desarrollo con:
+pnpm run dev
+Deberías ver en consola:
+Mapa Eco Kinal (API corriendo en puerto 3006)
+
+# INSTRUCCIONES PARA PROBAR EL ENDPOINT
+Endpoint disponible:
+POST    /api/recycling-centers     Obtiene los 5 centros de reciclaje más cercanos a las coordenadas enviadas.
+
+Cuerpo de la petición (Body - JSON)
+{
+  "lat": 14.6349,
+  "lon": -90.5069
+}
+
+# NOTA: Reemplaza lat y lon con las coordenadas de la ubicación que deseas consultar.
+Para obtener lat y lon haz lo siguiente: Desde tu navegador abre la consola del navegador (F12 → Console) y escribe:
+navigator.geolocation.getCurrentPosition(console.log)
+Te devolverá algo como:
+coords: {
+  latitude: 14.63,
+  longitude: -90.50
+}
+
+# ERRORES COMUNES
+Al ser una api de libre uso (open source) puede que al momento de que muchos usuarios hagan peticiones, exceda el tiempo de espera:
+{
+    "message": "Error consultando centros",
+    "error": "timeout of 20000ms exceeded"
+}
+
+También puede dar este error que significa que el servidor de Overpass recibió la petición pero él a su vez no pudo comunicarse con su propio backend, básicamente el servidor está caído o sobrecargado en ese momento.
+{
+    "message": "Error consultando centros",
+    "error": "Request failed with status code 502"
+}

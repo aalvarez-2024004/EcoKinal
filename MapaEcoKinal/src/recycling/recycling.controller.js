@@ -82,7 +82,7 @@ export const getRecyclingCenters = async (req, res) => {
             query,
             {
                 headers: { "Content-Type": "text/plain" },
-                timeout: 20000
+                timeout: 30000
             }
         );
 
