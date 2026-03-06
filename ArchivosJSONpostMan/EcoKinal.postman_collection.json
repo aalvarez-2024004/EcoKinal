@@ -1,0 +1,704 @@
+{
+  "info": {
+    "_postman_id": "63147a36-b9f4-4726-93da-d4442ae6ada8",
+    "name": "EcoKinal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48332488",
+    "_collection_link": "https://go.postman.co/collection/48332488-63147a36-b9f4-4726-93da-d4442ae6ada8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "AuthEcoKinal",
+      "item": [
+        {
+          "name": "RegisterEcoKinal",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Adrian\",\r\n  \"username\": \"Adrianmfffff\",\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VerificarCuenta",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Erick\",\r\n  \"username\": \"Folgar\",\r\n  \"email\": \"mauriciof20082@gmail.com\",\r\n  \"password\": \"EMFA5E2021545.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/auth/verify/{{vault:json-web-token}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "auth",
+                "verify",
+                "{{vault:json-web-token}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Iniciar Sesion",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"Nueva1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CambiarContraseña",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"currentPassword\": \"123456\",\r\n  \"newPassword\": \"123456789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/users/change-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "users",
+                "change-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CambiarNombre / Usuario",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Adriancitoo\",\r\n  \"username\": \"Adrianmf\",\r\n  \"email\": \"tovartravis4@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/users/update-profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "users",
+                "update-profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Olvidar contrasena link",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"tovartravis4@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/auth/forgot-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar contrasrna",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"token\": \"eb10683d1087e9cfd70d4bb346abf13a34667975f5fb095ba712ff631b6c0217\",\r\n  \"newPassword\": \"Nueva1234\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3005/api/auth/reset-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "api",
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ForoEcoKinal",
+      "item": [
+        {
+          "name": "Comentarios",
+          "item": [
+            {
+              "name": "Crear Comentario",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"content\": \"Este es un comentario de prueba para el foro\",\r\n    \"publicationId\": \"699ccf5bec6cc1697e52c718\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/add",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "ForoEcoKinal",
+                    "v1",
+                    "comments",
+                    "add"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver Comentario",
+              "request": {
+                "method": "GET",
+                "header": []
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Comentario",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"content\": \"Contenido actualizado del comentario\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/update/ID_DEL_COMENTARIO_AQUI",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "ForoEcoKinal",
+                    "v1",
+                    "comments",
+                    "update",
+                    "ID_DEL_COMENTARIO_AQUI"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar Comentario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyOGYwMzBmMS01YjFiLTQxNzctODdhOC05ZjE3ZmNhNjQzYjAiLCJyb2xlIjoiN2NiNWRiZDQtZThmNS00MTFlLTg4YjItMTA4ZGJiMDgzYzY2IiwiaWF0IjoxNzcxODg0MzQ3LCJleHAiOjE3NzE4ODc5NDd9.euztGc17RCxb1MaOjdhlG0WIo4i9VHHNAKz11iysKMA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/delete/699cd05eec6cc1697e52c71a",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "ForoEcoKinal",
+                    "v1",
+                    "comments",
+                    "delete",
+                    "699cd05eec6cc1697e52c71a"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Foro",
+          "item": [
+            {
+              "name": "Crear Foro",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{vault:authorization-secret}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "GUATEMALA",
+                      "type": "text",
+                      "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78"
+                    },
+                    {
+                      "key": "content",
+                      "value": "El mejor país del mundo",
+                      "type": "text",
+                      "uuid": "2de275e2-2070-40c7-891b-b617e45c481d"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
+                      "src": "/C:/Users/Francisco/Downloads/tikal.JPG"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "ForoEcoKinal",
+                    "v1",
+                    "posts",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver Foro",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{vault:authorization-secret}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "GUATEMALA",
+                      "type": "text",
+                      "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78"
+                    },
+                    {
+                      "key": "content",
+                      "value": "El mejor país del mundo",
+                      "type": "text",
+                      "uuid": "2de275e2-2070-40c7-891b-b617e45c481d"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
+                      "src": "/C:/Users/Informatica/Downloads/tikal.jpg"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/listar",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "ForoEcoKinal",
+                    "v1",
+                    "posts",
+                    "listar"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Foro",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{vault:authorization-secret}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Botella",
+                      "type": "text",
+                      "uuid": "11cd3727-85c8-4956-ab6c-912a96f98000"
+                    },
+                    {
+                      "key": "content",
+                      "value": "¿Dónde va clasificada la botella?",
+                      "type": "text",
+                      "uuid": "af0ef3d2-a628-4afe-baaf-12064e04d226"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "uuid": "dc1ff425-3b14-47dd-8807-3d043890d398",
+                      "src": "/C:/Users/Francisco/Downloads/botella.jpg"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/update/6998bff7680abe11abf2a3a2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "ForoEcoKinal",
+                    "v1",
+                    "posts",
+                    "update",
+                    "6998bff7680abe11abf2a3a2"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar Foro",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{vault:authorization-secret}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "",
+                      "value": "",
+                      "type": "text",
+                      "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78",
+                      "disabled": true
+                    },
+                    {
+                      "key": "",
+                      "value": "",
+                      "type": "text",
+                      "uuid": "2de275e2-2070-40c7-891b-b617e45c481d",
+                      "disabled": true
+                    },
+                    {
+                      "key": "",
+                      "type": "file",
+                      "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
+                      "value": null,
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/delete/6998bff7680abe11abf2a3a2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "ForoEcoKinal",
+                    "v1",
+                    "posts",
+                    "delete",
+                    "6998bff7680abe11abf2a3a2"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ClasificarImagen",
+      "item": [
+        {
+          "name": "ClasificarImagen",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "imagen",
+                  "type": "file",
+                  "uuid": "60e87417-3dce-46f7-88f5-5e188a192f2f",
+                  "src": "/C:/Users/Francisco/Downloads/123.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3007/api/vision/clasificar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3007",
+              "path": [
+                "api",
+                "vision",
+                "clasificar"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Gamificacion",
+      "item": [
+        {
+          "name": "My Gamification",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3008/gamification/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "gamification",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ranking global",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3008/GamificationEcoKinal/v1/gamification/ranking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "GamificationEcoKinal",
+                "v1",
+                "gamification",
+                "ranking"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
