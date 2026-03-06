@@ -62,6 +62,27 @@ y dirigirse hacia la carpeta llamada: ClasificarImagen
 
 **Los formatos permitidos son: .JPEG, .JPG y .PNG**
 
+# INSTRUCCIONES DE FOROECOKINAL
+1er paso - Abrir una terminal nueva y situarse en la carpeta del proyecto con el comando: "cd ForoEcoKinal"
+
+2do paso - Instalar dependencias del proyecto: pnpm install
+
+3er paso - Iniciar el programa con el siguiente comando: pnpm run dev
+
+**IMPORTANTE: El módulo AuthEcoKinal debe estar en ejecución, ya que el sistema requiere autenticación mediante token**
+
+4to paso - Probar las peticiones en PostMan que se encuentran en la carpeta llamada ArchivosJSONpostMan y dirigirse hacia la carpeta llamada: ForoEcoKinal.
+
+5to paso - Probar los endpoints desde la documentación interactiva de Swagger.
+
+    Debe dirigirse a su navegador de confianza y pegar esta URL: http://localhost:3006/api-docs
+    
+    1. Para probar el endpoint debes iniciar sesion en AuthEcoKinal
+    2. Copiar el token que se genera al iniciar sesión
+    3. En Swagger, presionar el botón Authorize.
+    4. Pegar el token en formato: Bearer TU_TOKEN_AQUI
+    5. Presionar Try it out para ejecutar las peticiones.
+    
 # INSTRUCCIONES DE GAMIFICACION
 Abrir una terminal nueva y situarse en la carpeta del proyecto con el comando: "cd GamificationEcoKinal"
  
