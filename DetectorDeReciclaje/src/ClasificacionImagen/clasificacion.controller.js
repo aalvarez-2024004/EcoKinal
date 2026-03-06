@@ -21,6 +21,12 @@ export const clasificarImagen = async (req, res) => {
 
         const labels = await detectarLabels(imagePath, req.file.mimetype);
 
+        // eliminar imagen después de usarla
+        if (imagePath && fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath);
+        }
+
+
         const resultado = clasificarResiduo(labels);
 
         const registro = await Clasificacion.create({
@@ -49,7 +55,7 @@ export const clasificarImagen = async (req, res) => {
         });
 
     } catch (error) {
-        
+        //eliminar la imagen si no se pudo clasificar
         if (imagePath && fs.existsSync(imagePath)) {
             fs.unlinkSync(imagePath);
         }
@@ -63,14 +69,29 @@ export const clasificarImagen = async (req, res) => {
 };
 
 const clasificarResiduo = (labels) => {
-    //convierte a minusculas y se unen todos los labels en un solo texto
-    const texto = labels.join(" ").toLowerCase();
+    //convierte a minusculas y se unen todos los labels en un solo texto y elimina las comas
+    const texto = labels.join(" ").toLowerCase().replace(/,/g, " ");
 
-    //Residuos peligrosos
-    if (texto.includes("battery") || texto.includes("batteries") ||
-        texto.includes("chemical") || texto.includes("medicine") ||
-        texto.includes("syringe") || texto.includes("paint") ||
-        texto.includes("oil"))
+    // Residuos peligrosos
+    if (
+        texto.includes("battery") || texto.includes("batteries") ||
+        texto.includes("lithium") || texto.includes("power cell") ||
+        texto.includes("cell") || texto.includes("charger") ||
+        texto.includes("adapter") || texto.includes("circuit") ||
+        texto.includes("electronic") || texto.includes("electronics") ||
+        texto.includes("chemical") || texto.includes("chemicals") ||
+        texto.includes("medicine") || texto.includes("medication") ||
+        texto.includes("drug") || texto.includes("syringe") ||
+        texto.includes("needle") || texto.includes("paint") ||
+        texto.includes("oil") || texto.includes("motor oil") ||
+        texto.includes("fuel") || texto.includes("gasoline") ||
+        texto.includes("diesel") || texto.includes("toxic") ||
+        texto.includes("hazardous") || texto.includes("acid") ||
+        texto.includes("bleach") || texto.includes("cleaner") ||
+        texto.includes("detergent") || texto.includes("pesticide") ||
+        texto.includes("insecticide") || texto.includes("fertilizer") ||
+        texto.includes("spray") || texto.includes("aerosol")
+    )
     {
         return {
             tipo: "Residuo Peligroso",
@@ -79,12 +100,46 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    //Todo lo organico
-    if (texto.includes("food") || texto.includes("fruit") || texto.includes("vegetable") ||
-        texto.includes("banana") || texto.includes("apple") || texto.includes("meat") ||
-        texto.includes("bread") || texto.includes("egg") || texto.includes("leaf") ||
-        texto.includes("plant") || texto.includes("wood") || texto.includes("flower") ||
-        texto.includes("orange") || texto.includes("lemon") || texto.includes("grass"))
+    // Orgánicos
+    if (
+        texto.includes("food") ||
+        texto.includes("fruit") ||
+        texto.includes("banana") ||
+        texto.includes("apple") ||
+        texto.includes("orange") ||
+        texto.includes("lemon") ||
+        texto.includes("mango") ||
+        texto.includes("pineapple") ||
+        texto.includes("grape") ||
+        texto.includes("strawberry") ||
+        texto.includes("vegetable") ||
+        texto.includes("carrot") ||
+        texto.includes("potato") ||
+        texto.includes("tomato") ||
+        texto.includes("broccoli") ||
+        texto.includes("cabbage") ||
+        texto.includes("onion") ||
+        texto.includes("garlic") ||
+        texto.includes("pepper") ||
+        texto.includes("meat") ||
+        texto.includes("chicken") ||
+        texto.includes("fish") ||
+        texto.includes("egg") ||
+        texto.includes("bread") ||
+        texto.includes("rice") ||
+        texto.includes("pasta") ||
+        texto.includes("coffee") ||
+        texto.includes("tea") ||
+        texto.includes("leaf") ||
+        texto.includes("leaves") ||
+        texto.includes("plant") ||
+        texto.includes("grass") ||
+        texto.includes("flower") ||
+        texto.includes("tree") ||
+        texto.includes("branch") ||
+        texto.includes("wood") ||
+        texto.includes("peel")
+    )
     {
         return {
             tipo: "Orgánico",
@@ -93,11 +148,46 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    //Todo lo Inorgánico
-    if (texto.includes("plastic") || texto.includes("metal") || texto.includes("can") ||
-        texto.includes("glass") || texto.includes("electronic") || texto.includes("cable") ||
-        texto.includes("wire") || texto.includes("aluminum") || texto.includes("rubber") ||
-        texto.includes("tire"))
+    // Inorgánicos reciclables
+    if (
+        texto.includes("plastic") ||
+        texto.includes("plastic bottle") ||
+        texto.includes("water bottle") ||
+        texto.includes("drink bottle") ||
+        texto.includes("plastic container") ||
+        texto.includes("container") ||
+        texto.includes("packaging") ||
+        texto.includes("package") ||
+        texto.includes("packet") ||
+        texto.includes("wrapper") ||
+        texto.includes("bag") ||
+        texto.includes("plastic bag") ||
+        texto.includes("cup") ||
+        texto.includes("lid") ||
+        texto.includes("cap") ||
+        texto.includes("metal") ||
+        texto.includes("aluminum") ||
+        texto.includes("steel") ||
+        texto.includes("can") ||
+        texto.includes("tin can") ||
+        texto.includes("soda can") ||
+        texto.includes("beer can") ||
+        texto.includes("foil") ||
+        texto.includes("glass") ||
+        texto.includes("glass bottle") ||
+        texto.includes("wine bottle") ||
+        texto.includes("beer bottle") ||
+        texto.includes("jar") ||
+        texto.includes("carton") ||
+        texto.includes("cardboard") ||
+        texto.includes("cardboard box") ||
+        texto.includes("paper") ||
+        texto.includes("paperboard") ||
+        texto.includes("crate") ||
+        texto.includes("box") ||
+        texto.includes("rubber") ||
+        texto.includes("tire")
+    )
     {
         return {
             tipo: "Inorgánico",
@@ -106,11 +196,29 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    //Todo lo reutilizable
-    if (texto.includes("box") || texto.includes("jar") || texto.includes("bottle") ||
-        texto.includes("tool") || texto.includes("bag") || texto.includes("furniture") ||
-        texto.includes("cloth") || texto.includes("clothing") || texto.includes("shoe") ||
-        texto.includes("toy") || texto.includes("book"))
+    // Reutilizables
+    if (
+        texto.includes("tool") ||
+        texto.includes("hammer") ||
+        texto.includes("screwdriver") ||
+        texto.includes("wrench") ||
+        texto.includes("furniture") ||
+        texto.includes("chair") ||
+        texto.includes("table") ||
+        texto.includes("desk") ||
+        texto.includes("clothing") ||
+        texto.includes("cloth") ||
+        texto.includes("shirt") ||
+        texto.includes("pants") ||
+        texto.includes("jacket") ||
+        texto.includes("shoe") ||
+        texto.includes("sneaker") ||
+        texto.includes("toy") ||
+        texto.includes("doll") ||
+        texto.includes("book") ||
+        texto.includes("notebook") ||
+        texto.includes("backpack")
+    )
     {
         return {
             tipo: "Reutilizable",
@@ -119,11 +227,10 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    //Lo no reciclable
+    // No reciclable
     return {
         tipo: "No reciclable",
         descripcion: "No se puede reciclar ni reutilizar fácilmente.",
         contenedor: "Esto va en el contenedor GRIS"
-    };
-
+    }
 }
