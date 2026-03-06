@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "63147a36-b9f4-4726-93da-d4442ae6ada8",
+    "_postman_id": "863eb022-5e58-4c05-aa24-c97bc551cf88",
     "name": "EcoKinal",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "48332488",
-    "_collection_link": "https://go.postman.co/collection/48332488-63147a36-b9f4-4726-93da-d4442ae6ada8?source=collection_link"
+    "_exporter_id": "48329923",
+    "_collection_link": "https://go.postman.co/collection/48329923-863eb022-5e58-4c05-aa24-c97bc551cf88?source=collection_link"
   },
   "item": [
     {
@@ -17,7 +17,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Adrian\",\r\n  \"username\": \"Adrianmfffff\",\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+              "raw": "{\r\n  \"name\": \"Julio Realiquez\",\r\n  \"username\": \"Proxy549\",\r\n  \"email\": \"realiqueznoriega80@gmail.com\",\r\n  \"password\": \"admin2021549\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -76,7 +76,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": \"tovartravis4@gmail.com\",\r\n  \"password\": \"Nueva1234\"\r\n}",
+              "raw": "{\r\n  \"email\": \"realiqueznoriega80@gmail.com\",\r\n  \"password\": \"admin2021549\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -246,354 +246,7 @@
       "name": "ForoEcoKinal",
       "item": [
         {
-          "name": "Comentarios",
-          "item": [
-            {
-              "name": "Crear Comentario",
-              "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"content\": \"Este es un comentario de prueba para el foro\",\r\n    \"publicationId\": \"699ccf5bec6cc1697e52c718\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/add",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3006",
-                  "path": [
-                    "ForoEcoKinal",
-                    "v1",
-                    "comments",
-                    "add"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Ver Comentario",
-              "request": {
-                "method": "GET",
-                "header": []
-              },
-              "response": []
-            },
-            {
-              "name": "Actualizar Comentario",
-              "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"content\": \"Contenido actualizado del comentario\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/update/ID_DEL_COMENTARIO_AQUI",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3006",
-                  "path": [
-                    "ForoEcoKinal",
-                    "v1",
-                    "comments",
-                    "update",
-                    "ID_DEL_COMENTARIO_AQUI"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Eliminar Comentario",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyOGYwMzBmMS01YjFiLTQxNzctODdhOC05ZjE3ZmNhNjQzYjAiLCJyb2xlIjoiN2NiNWRiZDQtZThmNS00MTFlLTg4YjItMTA4ZGJiMDgzYzY2IiwiaWF0IjoxNzcxODg0MzQ3LCJleHAiOjE3NzE4ODc5NDd9.euztGc17RCxb1MaOjdhlG0WIo4i9VHHNAKz11iysKMA",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:3006/ForoEcoKinal/v1/comments/delete/699cd05eec6cc1697e52c71a",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3006",
-                  "path": [
-                    "ForoEcoKinal",
-                    "v1",
-                    "comments",
-                    "delete",
-                    "699cd05eec6cc1697e52c71a"
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "Foro",
-          "item": [
-            {
-              "name": "Crear Foro",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{vault:authorization-secret}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "title",
-                      "value": "GUATEMALA",
-                      "type": "text",
-                      "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78"
-                    },
-                    {
-                      "key": "content",
-                      "value": "El mejor país del mundo",
-                      "type": "text",
-                      "uuid": "2de275e2-2070-40c7-891b-b617e45c481d"
-                    },
-                    {
-                      "key": "photo",
-                      "type": "file",
-                      "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
-                      "src": "/C:/Users/Francisco/Downloads/tikal.JPG"
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/create",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3006",
-                  "path": [
-                    "ForoEcoKinal",
-                    "v1",
-                    "posts",
-                    "create"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Ver Foro",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{vault:authorization-secret}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "title",
-                      "value": "GUATEMALA",
-                      "type": "text",
-                      "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78"
-                    },
-                    {
-                      "key": "content",
-                      "value": "El mejor país del mundo",
-                      "type": "text",
-                      "uuid": "2de275e2-2070-40c7-891b-b617e45c481d"
-                    },
-                    {
-                      "key": "photo",
-                      "type": "file",
-                      "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
-                      "src": "/C:/Users/Informatica/Downloads/tikal.jpg"
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/listar",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3006",
-                  "path": [
-                    "ForoEcoKinal",
-                    "v1",
-                    "posts",
-                    "listar"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Actualizar Foro",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{vault:authorization-secret}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "title",
-                      "value": "Botella",
-                      "type": "text",
-                      "uuid": "11cd3727-85c8-4956-ab6c-912a96f98000"
-                    },
-                    {
-                      "key": "content",
-                      "value": "¿Dónde va clasificada la botella?",
-                      "type": "text",
-                      "uuid": "af0ef3d2-a628-4afe-baaf-12064e04d226"
-                    },
-                    {
-                      "key": "photo",
-                      "type": "file",
-                      "uuid": "dc1ff425-3b14-47dd-8807-3d043890d398",
-                      "src": "/C:/Users/Francisco/Downloads/botella.jpg"
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/update/6998bff7680abe11abf2a3a2",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3006",
-                  "path": [
-                    "ForoEcoKinal",
-                    "v1",
-                    "posts",
-                    "update",
-                    "6998bff7680abe11abf2a3a2"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Eliminar Foro",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{vault:authorization-secret}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "",
-                      "value": "",
-                      "type": "text",
-                      "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78",
-                      "disabled": true
-                    },
-                    {
-                      "key": "",
-                      "value": "",
-                      "type": "text",
-                      "uuid": "2de275e2-2070-40c7-891b-b617e45c481d",
-                      "disabled": true
-                    },
-                    {
-                      "key": "",
-                      "type": "file",
-                      "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
-                      "value": null,
-                      "disabled": true
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/delete/6998bff7680abe11abf2a3a2",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3006",
-                  "path": [
-                    "ForoEcoKinal",
-                    "v1",
-                    "posts",
-                    "delete",
-                    "6998bff7680abe11abf2a3a2"
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "ClasificarImagen",
-      "item": [
-        {
-          "name": "ClasificarImagen",
+          "name": "Crear Foro",
           "request": {
             "auth": {
               "type": "bearer",
@@ -611,10 +264,243 @@
               "mode": "formdata",
               "formdata": [
                 {
+                  "key": "title",
+                  "value": "GUATEMALA",
+                  "type": "text",
+                  "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78"
+                },
+                {
+                  "key": "content",
+                  "value": "El mejor país del mundo",
+                  "type": "text",
+                  "uuid": "2de275e2-2070-40c7-891b-b617e45c481d"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
+                  "src": "/C:/Users/Francisco/Downloads/tikal.JPG"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "ForoEcoKinal",
+                "v1",
+                "posts",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver Foro",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "GUATEMALA",
+                  "type": "text",
+                  "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78"
+                },
+                {
+                  "key": "content",
+                  "value": "El mejor país del mundo",
+                  "type": "text",
+                  "uuid": "2de275e2-2070-40c7-891b-b617e45c481d"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
+                  "src": "/C:/Users/Informatica/Downloads/tikal.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/listar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "ForoEcoKinal",
+                "v1",
+                "posts",
+                "listar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Foro",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Botella",
+                  "type": "text",
+                  "uuid": "11cd3727-85c8-4956-ab6c-912a96f98000"
+                },
+                {
+                  "key": "content",
+                  "value": "¿Dónde va clasificada la botella?",
+                  "type": "text",
+                  "uuid": "af0ef3d2-a628-4afe-baaf-12064e04d226"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "uuid": "dc1ff425-3b14-47dd-8807-3d043890d398",
+                  "src": "/C:/Users/Francisco/Downloads/botella.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/update/6998bff7680abe11abf2a3a2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "ForoEcoKinal",
+                "v1",
+                "posts",
+                "update",
+                "6998bff7680abe11abf2a3a2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Foro",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text",
+                  "uuid": "50f313dc-571b-46e9-a9dc-41ac4fff8b78",
+                  "disabled": true
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text",
+                  "uuid": "2de275e2-2070-40c7-891b-b617e45c481d",
+                  "disabled": true
+                },
+                {
+                  "key": "",
+                  "type": "file",
+                  "uuid": "b7e2bd31-8854-4d8d-807c-67cd87cb6357",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3006/ForoEcoKinal/v1/posts/delete/6998bff7680abe11abf2a3a2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "ForoEcoKinal",
+                "v1",
+                "posts",
+                "delete",
+                "6998bff7680abe11abf2a3a2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ClasificarImagen",
+      "item": [
+        {
+          "name": "ClasificarImagen",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5OTBhNTRhZi1hMGM1LTQ2ZWQtYjNjMi01YjNjODYyYTIxOTMiLCJyb2xlIjoiYjIzYTM4YWYtZTIzNi00MDJkLTgyMTMtYTA4MjY0NDRiMGMyIiwiaWF0IjoxNzcyODMyODE1LCJleHAiOjE3NzI4MzY0MTV9.1TZy3aESirLfNWtguSRTkU8pKEuc68DinasOcUNrqd0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
                   "key": "imagen",
                   "type": "file",
                   "uuid": "60e87417-3dce-46f7-88f5-5e188a192f2f",
-                  "src": "/C:/Users/Francisco/Downloads/123.jpg"
+                  "src": "/C:/Users/gabo/Desktop/WhatsAppImage2025-04-01at1.30.30.png"
                 }
               ]
             },
@@ -693,6 +579,120 @@
                 "v1",
                 "gamification",
                 "ranking"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MapaEcoKinal",
+      "item": [
+        {
+          "name": "BuscarCentrosCercanos",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{vault:authorization-secret}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"lat\": 14.62512139874458,\r\n  \"lon\": -90.53533136505666\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3006/api/recycling-centers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3006",
+              "path": [
+                "api",
+                "recycling-centers"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ImpactoEcoKinal",
+      "item": [
+        {
+          "name": "VerImpacto",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5OTBhNTRhZi1hMGM1LTQ2ZWQtYjNjMi01YjNjODYyYTIxOTMiLCJyb2xlIjoiYjIzYTM4YWYtZTIzNi00MDJkLTgyMTMtYTA4MjY0NDRiMGMyIiwiaWF0IjoxNzcyODMzMjEwLCJleHAiOjE3NzI4MzY4MTB9.bYqFoAVrCBy2ELc0Ww0W_3zYerf-6Va_5spWQxwlw4M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3002/api/impacto/dashboard",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3002",
+              "path": [
+                "api",
+                "impacto",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VerImpactoGlobal",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/api/impacto/dashboard/global",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3002",
+              "path": [
+                "api",
+                "impacto",
+                "dashboard",
+                "global"
               ]
             }
           },

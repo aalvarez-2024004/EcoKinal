@@ -21,11 +21,9 @@ export const clasificarImagen = async (req, res) => {
 
         const labels = await detectarLabels(imagePath, req.file.mimetype);
 
-        // eliminar imagen después de usarla
         if (imagePath && fs.existsSync(imagePath)) {
             fs.unlinkSync(imagePath);
         }
-
 
         const resultado = clasificarResiduo(labels);
 
@@ -35,17 +33,21 @@ export const clasificarImagen = async (req, res) => {
             tipo: resultado.tipo,
             contenedor: resultado.contenedor
         });
-
-                // *** Aquí agregamos la llamada para sumar puntos ***
+        
         try {
             await axios.post('http://localhost:3008/gamification/add-points', {}, {
-                headers: {
-                    Authorization: req.headers.authorization // Pasamos el token JWT
-                }
+                headers: { Authorization: req.headers.authorization }
             });
         } catch (error) {
             console.error('Error al sumar puntos en gamificación:', error.message);
-            // No abortamos el proceso principal, solo logueamos el error
+        }
+        try {
+            await axios.post('http://localhost:3002/api/impacto/registrar',
+                { tipo: resultado.tipo },
+                { headers: { Authorization: req.headers.authorization } }
+            );
+        } catch (error) {
+            console.error('Error al registrar impacto ambiental:', error.response?.data || error.message);
         }
 
         return res.status(200).json({
@@ -55,7 +57,6 @@ export const clasificarImagen = async (req, res) => {
         });
 
     } catch (error) {
-        //eliminar la imagen si no se pudo clasificar
         if (imagePath && fs.existsSync(imagePath)) {
             fs.unlinkSync(imagePath);
         }
@@ -69,10 +70,8 @@ export const clasificarImagen = async (req, res) => {
 };
 
 const clasificarResiduo = (labels) => {
-    //convierte a minusculas y se unen todos los labels en un solo texto y elimina las comas
     const texto = labels.join(" ").toLowerCase().replace(/,/g, " ");
 
-    // Residuos peligrosos
     if (
         texto.includes("battery") || texto.includes("batteries") ||
         texto.includes("lithium") || texto.includes("power cell") ||
@@ -91,8 +90,7 @@ const clasificarResiduo = (labels) => {
         texto.includes("detergent") || texto.includes("pesticide") ||
         texto.includes("insecticide") || texto.includes("fertilizer") ||
         texto.includes("spray") || texto.includes("aerosol")
-    )
-    {
+    ) {
         return {
             tipo: "Residuo Peligroso",
             descripcion: "Requiere manejo especial por ser contaminante.",
@@ -100,47 +98,27 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    // Orgánicos
     if (
-        texto.includes("food") ||
-        texto.includes("fruit") ||
-        texto.includes("banana") ||
-        texto.includes("apple") ||
-        texto.includes("orange") ||
-        texto.includes("lemon") ||
-        texto.includes("mango") ||
-        texto.includes("pineapple") ||
-        texto.includes("grape") ||
-        texto.includes("strawberry") ||
-        texto.includes("vegetable") ||
-        texto.includes("carrot") ||
-        texto.includes("potato") ||
-        texto.includes("tomato") ||
-        texto.includes("broccoli") ||
-        texto.includes("cabbage") ||
-        texto.includes("onion") ||
-        texto.includes("garlic") ||
-        texto.includes("pepper") ||
-        texto.includes("meat") ||
-        texto.includes("chicken") ||
-        texto.includes("fish") ||
-        texto.includes("egg") ||
-        texto.includes("bread") ||
-        texto.includes("rice") ||
-        texto.includes("pasta") ||
-        texto.includes("coffee") ||
-        texto.includes("tea") ||
-        texto.includes("leaf") ||
-        texto.includes("leaves") ||
-        texto.includes("plant") ||
-        texto.includes("grass") ||
-        texto.includes("flower") ||
-        texto.includes("tree") ||
-        texto.includes("branch") ||
-        texto.includes("wood") ||
+        texto.includes("food") || texto.includes("fruit") ||
+        texto.includes("banana") || texto.includes("apple") ||
+        texto.includes("orange") || texto.includes("lemon") ||
+        texto.includes("mango") || texto.includes("pineapple") ||
+        texto.includes("grape") || texto.includes("strawberry") ||
+        texto.includes("vegetable") || texto.includes("carrot") ||
+        texto.includes("potato") || texto.includes("tomato") ||
+        texto.includes("broccoli") || texto.includes("cabbage") ||
+        texto.includes("onion") || texto.includes("garlic") ||
+        texto.includes("pepper") || texto.includes("meat") ||
+        texto.includes("chicken") || texto.includes("fish") ||
+        texto.includes("egg") || texto.includes("bread") ||
+        texto.includes("rice") || texto.includes("pasta") ||
+        texto.includes("coffee") || texto.includes("tea") ||
+        texto.includes("leaf") || texto.includes("leaves") ||
+        texto.includes("plant") || texto.includes("grass") ||
+        texto.includes("flower") || texto.includes("tree") ||
+        texto.includes("branch") || texto.includes("wood") ||
         texto.includes("peel")
-    )
-    {
+    ) {
         return {
             tipo: "Orgánico",
             descripcion: "Este residuo se descompone naturalmente.",
@@ -148,47 +126,27 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    // Inorgánicos reciclables
     if (
-        texto.includes("plastic") ||
-        texto.includes("plastic bottle") ||
-        texto.includes("water bottle") ||
-        texto.includes("drink bottle") ||
-        texto.includes("plastic container") ||
-        texto.includes("container") ||
-        texto.includes("packaging") ||
-        texto.includes("package") ||
-        texto.includes("packet") ||
-        texto.includes("wrapper") ||
-        texto.includes("bag") ||
-        texto.includes("plastic bag") ||
-        texto.includes("cup") ||
-        texto.includes("lid") ||
-        texto.includes("cap") ||
-        texto.includes("metal") ||
-        texto.includes("aluminum") ||
-        texto.includes("steel") ||
-        texto.includes("can") ||
-        texto.includes("tin can") ||
-        texto.includes("soda can") ||
-        texto.includes("beer can") ||
-        texto.includes("foil") ||
-        texto.includes("glass") ||
-        texto.includes("glass bottle") ||
-        texto.includes("wine bottle") ||
-        texto.includes("beer bottle") ||
-        texto.includes("jar") ||
-        texto.includes("carton") ||
-        texto.includes("cardboard") ||
-        texto.includes("cardboard box") ||
-        texto.includes("paper") ||
-        texto.includes("paperboard") ||
-        texto.includes("crate") ||
-        texto.includes("box") ||
-        texto.includes("rubber") ||
+        texto.includes("plastic") || texto.includes("plastic bottle") ||
+        texto.includes("water bottle") || texto.includes("drink bottle") ||
+        texto.includes("plastic container") || texto.includes("container") ||
+        texto.includes("packaging") || texto.includes("package") ||
+        texto.includes("packet") || texto.includes("wrapper") ||
+        texto.includes("bag") || texto.includes("plastic bag") ||
+        texto.includes("cup") || texto.includes("lid") ||
+        texto.includes("cap") || texto.includes("metal") ||
+        texto.includes("aluminum") || texto.includes("steel") ||
+        texto.includes("can") || texto.includes("tin can") ||
+        texto.includes("soda can") || texto.includes("beer can") ||
+        texto.includes("foil") || texto.includes("glass") ||
+        texto.includes("glass bottle") || texto.includes("wine bottle") ||
+        texto.includes("beer bottle") || texto.includes("jar") ||
+        texto.includes("carton") || texto.includes("cardboard") ||
+        texto.includes("cardboard box") || texto.includes("paper") ||
+        texto.includes("paperboard") || texto.includes("crate") ||
+        texto.includes("box") || texto.includes("rubber") ||
         texto.includes("tire")
-    )
-    {
+    ) {
         return {
             tipo: "Inorgánico",
             descripcion: "No se descompone fácilmente y debe reciclarse.",
@@ -196,30 +154,18 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    // Reutilizables
     if (
-        texto.includes("tool") ||
-        texto.includes("hammer") ||
-        texto.includes("screwdriver") ||
-        texto.includes("wrench") ||
-        texto.includes("furniture") ||
-        texto.includes("chair") ||
-        texto.includes("table") ||
-        texto.includes("desk") ||
-        texto.includes("clothing") ||
-        texto.includes("cloth") ||
-        texto.includes("shirt") ||
-        texto.includes("pants") ||
-        texto.includes("jacket") ||
-        texto.includes("shoe") ||
-        texto.includes("sneaker") ||
-        texto.includes("toy") ||
-        texto.includes("doll") ||
-        texto.includes("book") ||
-        texto.includes("notebook") ||
-        texto.includes("backpack")
-    )
-    {
+        texto.includes("tool") || texto.includes("hammer") ||
+        texto.includes("screwdriver") || texto.includes("wrench") ||
+        texto.includes("furniture") || texto.includes("chair") ||
+        texto.includes("table") || texto.includes("desk") ||
+        texto.includes("clothing") || texto.includes("cloth") ||
+        texto.includes("shirt") || texto.includes("pants") ||
+        texto.includes("jacket") || texto.includes("shoe") ||
+        texto.includes("sneaker") || texto.includes("toy") ||
+        texto.includes("doll") || texto.includes("book") ||
+        texto.includes("notebook") || texto.includes("backpack")
+    ) {
         return {
             tipo: "Reutilizable",
             descripcion: "Puede reutilizarse antes de desecharse.",
@@ -227,10 +173,9 @@ const clasificarResiduo = (labels) => {
         };
     }
 
-    // No reciclable
     return {
         tipo: "No reciclable",
         descripcion: "No se puede reciclar ni reutilizar fácilmente.",
         contenedor: "Esto va en el contenedor GRIS"
-    }
-}
+    };
+};
