@@ -61,3 +61,37 @@ y dirigirse hacia la carpeta llamada: ClasificarImagen
     5. Presionar Try it out para ejecutar la petición.
 
 **Los formatos permitidos son: .JPEG, .JPG y .PNG**
+
+# INSTRUCCIONES DE GAMIFICACION
+Abrir una terminal nueva y situarse en la carpeta del proyecto con el comando: "cd GamificationEcoKinal"
+ 
+Instalar dependencias del proyecto: pnpm install
+ 
+Instalar axios (necesario para que DetectorDeReciclaje pueda enviar las solicitudes para sumar puntos automáticamente):
+ 
+pnpm install axios
+ 
+
+Cargar variables de entorno:
+ 
+Verifica que tengas tu archivo .env con las configuraciones correctas de puerto y base de datos MongoDB.
+ 
+Iniciar servidor de Gamificación: pnpm run dev
+
+ 
+Por defecto, corre en http://localhost:3008
+ 
+Debes ver en la consola:
+ 
+MongoDB | conectado a MongoDB
+GamificationEcoKinal corriendo en puerto 3008
+ 
+Probar los endpoints en Postman o Swagger:
+ 
+Swagger: http://localhost:3008/api-docs
+
+Primero inicia AuthEcoKinal y obtén el token JWT.
+ 
+Luego inicia DetectorDeReciclaje y clasifica una imagen.
+ 
+Finalmente revisa tu perfil de gamificación con GET /gamification/me para confirmar que los puntos se sumaron correctamente.
